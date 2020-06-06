@@ -2,6 +2,7 @@ package maurya.devansh.headlines
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import maurya.devansh.headlines.model.NewsHeadline
 
 class MainActivity : AppCompatActivity() {
 
