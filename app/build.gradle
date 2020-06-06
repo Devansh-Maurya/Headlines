@@ -41,8 +41,9 @@ android {
 }
 
 dependencies {
-    def versionRetrofit = '2.9.0'
-    def versionDagger = '2.22'
+    def retrofit_version = '2.9.0'
+    def dagger_version = '2.22'
+    def lifecycle_version = '2.2.0'
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
@@ -55,11 +56,11 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 
     //Retrofit
-    implementation "com.squareup.retrofit2:retrofit:$versionRetrofit"
+    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
     //Gson for Retrofit
-    implementation "com.squareup.retrofit2:converter-gson:$versionRetrofit"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
     //RxJava Adapter
-    implementation "com.squareup.retrofit2:adapter-rxjava2:$versionRetrofit"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofit_version"
 
     //RxJava2
     implementation 'io.reactivex.rxjava2:rxjava:2.2.2'
@@ -68,7 +69,11 @@ dependencies {
     implementation 'io.reactivex.rxjava2:rxandroid:2.1.0'
 
     //Dagger
-    api "com.google.dagger:dagger:$versionDagger"
-    kapt "com.google.dagger:dagger-compiler:$versionDagger"
+    api "com.google.dagger:dagger:$dagger_version"
+    kapt "com.google.dagger:dagger-compiler:$dagger_version"
 
+    // ViewModel
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
+    // LiveData
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version"
 }
