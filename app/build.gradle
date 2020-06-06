@@ -20,6 +20,15 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -49,7 +58,7 @@ dependencies {
     //Gson for Retrofit
     implementation "com.squareup.retrofit2:converter-gson:$versionRetrofit"
     //RxJava Adapter
-    implementation "com.squareup.retrofit2:adapter-rxjava:$versionRetrofit"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$versionRetrofit"
 
     //RxJava2
     implementation 'io.reactivex.rxjava2:rxjava:2.2.2'
