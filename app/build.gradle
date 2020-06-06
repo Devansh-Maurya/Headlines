@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 
 def localProperties = new Properties()
 localProperties.load(new FileInputStream(rootProject.file("local.properties")))
@@ -28,11 +29,12 @@ android {
             buildConfigField("String", "API_KEY", "\"" + localProperties['apiKey'] + "\"")
         }
     }
-
 }
 
 dependencies {
     def versionRetrofit = '2.9.0'
+    def versionDagger = '2.22'
+
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'androidx.appcompat:appcompat:1.1.0'
@@ -55,5 +57,8 @@ dependencies {
     //RxAndroid
     implementation 'io.reactivex.rxjava2:rxandroid:2.1.0'
 
+    //Dagger
+    api "com.google.dagger:dagger:$versionDagger"
+    kapt "com.google.dagger:dagger-compiler:$versionDagger"
 
 }
