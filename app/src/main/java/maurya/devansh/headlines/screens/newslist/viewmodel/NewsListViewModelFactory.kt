@@ -1,4 +1,4 @@
-package maurya.devansh.headlines.screens.newslist
+package maurya.devansh.headlines.screens.newslist.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -15,7 +15,9 @@ class NewsListViewModelFactory @Inject constructor(private val newsRepository: N
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(NewsListViewModel::class.java)) {
             @Suppress("UNCHECKED_CAST")
-            return NewsListViewModel(newsRepository) as T
+            return NewsListViewModel(
+                newsRepository
+            ) as T
         }
         throw IllegalArgumentException("Unknown ViewModel Type")
     }

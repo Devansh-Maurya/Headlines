@@ -1,4 +1,4 @@
-package maurya.devansh.headlines.screens.newslist
+package maurya.devansh.headlines.screens.newslist.viewmodel
 
 import androidx.lifecycle.ViewModel
 import maurya.devansh.headlines.repository.NewsRepository

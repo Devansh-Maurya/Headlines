@@ -3,7 +3,7 @@ package maurya.devansh.headlines.di
 import androidx.lifecycle.ViewModelProvider
 import dagger.Binds
 import dagger.Module
-import maurya.devansh.headlines.screens.newslist.NewsListViewModelFactory
+import maurya.devansh.headlines.screens.newslist.viewmodel.NewsListViewModelFactory
 
 /**
  * Created by Devansh on 6/6/20

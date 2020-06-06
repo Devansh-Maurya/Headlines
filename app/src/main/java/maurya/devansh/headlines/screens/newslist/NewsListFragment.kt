@@ -7,8 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import kotlinx.android.synthetic.main.fragment_news_list.*
 import maurya.devansh.headlines.HeadlinesApplication
 import maurya.devansh.headlines.R
+import maurya.devansh.headlines.screens.newslist.recyclerview.NewsListAdapter
+import maurya.devansh.headlines.screens.newslist.viewmodel.NewsListViewModel
 import javax.inject.Inject
 
 class NewsListFragment : Fragment() {
@@ -27,9 +30,11 @@ class NewsListFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_news_list, container, false)
     }
 
-
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        recyclerView.adapter = NewsListAdapter(arrayListOf())
+    }
 }
