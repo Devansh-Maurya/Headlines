@@ -81,4 +81,7 @@ dependencies {
     // Navigation Components
     implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
     implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
+
+    // Intuit SDP (for consistency across different screen densities)
+    implementation 'com.intuit.sdp:sdp-android:1.0.6'
 }
