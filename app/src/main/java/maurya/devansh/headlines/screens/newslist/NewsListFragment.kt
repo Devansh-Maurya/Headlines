@@ -28,7 +28,7 @@ class NewsListFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_news_feed, container, false)
+        return inflater.inflate(R.layout.fragment_news_list, container, false)
     }
 
 
