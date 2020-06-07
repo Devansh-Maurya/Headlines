@@ -2,6 +2,7 @@ package maurya.devansh.headlines.di
 
 import dagger.Module
 import dagger.Provides
+import io.reactivex.disposables.CompositeDisposable
 import maurya.devansh.headlines.network.NewsHeadlinesApiService
 import maurya.devansh.headlines.network.RetrofitService
 import javax.inject.Singleton
@@ -17,4 +18,7 @@ class NetworkModule {
     @Provides
     fun provideNewsHeadlinesApiService(): NewsHeadlinesApiService =
         RetrofitService.createService(NewsHeadlinesApiService::class.java)
+
+    @Provides
+    fun provideCompositeDisposable(): CompositeDisposable = CompositeDisposable()
 }

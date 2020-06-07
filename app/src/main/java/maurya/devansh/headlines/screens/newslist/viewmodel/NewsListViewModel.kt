@@ -1,35 +1,41 @@
 package maurya.devansh.headlines.screens.newslist.viewmodel
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.LiveDataReactiveStreams
-import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.ViewModel
-import io.reactivex.functions.Function
-import io.reactivex.schedulers.Schedulers
+import androidx.paging.LivePagedListBuilder
+import androidx.paging.PagedList
+import io.reactivex.disposables.CompositeDisposable
+import maurya.devansh.headlines.datasource.NewsDataSourceFactory
 import maurya.devansh.headlines.model.NewsHeadline
-import maurya.devansh.headlines.model.TopNewsHeadlines
-import maurya.devansh.headlines.repository.NewsRepository
+import timber.log.Timber
 
 /**
  * Created by Devansh on 6/6/20
  */
 
-class NewsListViewModel(private val newsRepository: NewsRepository): ViewModel() {
+class NewsListViewModel(newsDataSourceFactory: NewsDataSourceFactory): ViewModel() {
 
-    fun getTopHeadlines(country: String, apiKey: String) : LiveData<List<NewsHeadline>> {
-        val newsHeadlinesSource: LiveData<TopNewsHeadlines> =
-            LiveDataReactiveStreams.fromPublisher(
-                newsRepository.getTopHeadlines(country, apiKey)
-                    .onErrorReturn(Function {
-                        return@Function TopNewsHeadlines("Error fetching news", 0, listOf())
-                    })
-                    .subscribeOn(Schedulers.io())
-            )
+    private val newsHeadlinesListLiveData: LiveData<PagedList<NewsHeadline>>
+    private val compositeDisposable: CompositeDisposable
 
-        return MediatorLiveData<List<NewsHeadline>>().apply {
-            addSource(newsHeadlinesSource) {
-                value = it.articles
-            }
-        }
+    init {
+        val pagedListConfig = PagedList.Config.Builder()
+            .setEnablePlaceholders(false)
+            .setInitialLoadSizeHint(20)
+            .setPageSize(20)
+            .build()
+
+        newsHeadlinesListLiveData = LivePagedListBuilder(newsDataSourceFactory, pagedListConfig).build()
+        compositeDisposable = newsDataSourceFactory.compositeDisposable
+    }
+
+    fun getNewsHeadlines() : LiveData<PagedList<NewsHeadline>> {
+        return newsHeadlinesListLiveData
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        Timber.d("Composite disposable size: ${compositeDisposable.size()}")
+        compositeDisposable.clear()
     }
 }

@@ -45,6 +45,7 @@ dependencies {
     def dagger_version = '2.22'
     def lifecycle_version = '2.2.0'
     def nav_version = '2.3.0-beta01'
+    def paging_version = "2.1.2"
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
@@ -92,4 +93,13 @@ dependencies {
 
     // Chrome custom tabs
     implementation 'androidx.browser:browser:1.2.0'
+
+    // Paging library
+    implementation "androidx.paging:paging-runtime-ktx:$paging_version"
+    // RxJava support
+    implementation "androidx.paging:paging-rxjava2-ktx:$paging_version"
+
+    // Timber
+    implementation 'com.jakewharton.timber:timber:4.7.1'
+
 }

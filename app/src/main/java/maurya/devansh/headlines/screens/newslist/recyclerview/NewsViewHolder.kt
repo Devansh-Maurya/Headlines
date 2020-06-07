@@ -36,6 +36,7 @@ class NewsViewHolder(itemView: View): BaseViewHolder<NewsHeadline>(itemView) {
             setShowTitle(true)
             build()
         }
+        // TODO: Edge case if chrome is not installed. The other browser may not support custom tabs
         customTabsIntent.launchUrl(context, Uri.parse(newsUrl))
     }
 }

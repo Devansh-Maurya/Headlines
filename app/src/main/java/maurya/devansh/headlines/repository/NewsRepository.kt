@@ -11,7 +11,7 @@ import javax.inject.Inject
 
 class NewsRepository @Inject constructor(private val newsHeadlinesApi: NewsHeadlinesApiService) {
 
-    fun getTopHeadlines(country: String, apiKey: String) : Flowable<TopNewsHeadlines> {
-        return newsHeadlinesApi.getTopHeadlines(country, apiKey)
+    fun getTopHeadlines(country: String, apiKey: String, page: Int = 1) : Flowable<TopNewsHeadlines> {
+        return newsHeadlinesApi.getTopHeadlines(country, apiKey, page)
     }
 }

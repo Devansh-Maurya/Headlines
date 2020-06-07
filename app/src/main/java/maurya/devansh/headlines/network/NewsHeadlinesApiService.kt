@@ -12,7 +12,8 @@ interface NewsHeadlinesApiService {
 
     @GET("/v2/top-headlines")
     fun getTopHeadlines(@Query("country") country: String,
-                        @Query("apiKey") apiKey:String): Flowable<TopNewsHeadlines>
+                        @Query("apiKey") apiKey: String,
+                        @Query("page") page: Int = 1): Flowable<TopNewsHeadlines>
 
 
 }

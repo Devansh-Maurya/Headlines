@@ -1,7 +1,9 @@
 package maurya.devansh.headlines
 
 import android.app.Application
+import maurya.devansh.headlines.di.AppComponent
 import maurya.devansh.headlines.di.DaggerAppComponent
+import timber.log.Timber
 
 /**
  * Created by Devansh on 6/6/20
@@ -9,9 +11,13 @@ import maurya.devansh.headlines.di.DaggerAppComponent
 
 class HeadlinesApplication: Application() {
 
-    val appComponent = DaggerAppComponent.create()
+    val appComponent: AppComponent = DaggerAppComponent.create()
 
     override fun onCreate() {
         super.onCreate()
+
+        if (BuildConfig.DEBUG) {
+            Timber.plant(Timber.DebugTree())
+        }
     }
 }

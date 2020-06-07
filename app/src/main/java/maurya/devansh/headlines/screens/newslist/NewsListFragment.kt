@@ -9,7 +9,6 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import kotlinx.android.synthetic.main.fragment_news_list.*
-import maurya.devansh.headlines.BuildConfig
 import maurya.devansh.headlines.HeadlinesApplication
 import maurya.devansh.headlines.R
 import maurya.devansh.headlines.screens.newslist.recyclerview.NewsListAdapter
@@ -37,9 +36,12 @@ class NewsListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.getTopHeadlines("in", BuildConfig.API_KEY)
-            .observe(viewLifecycleOwner, Observer {
-                recyclerView.adapter = NewsListAdapter(it)
+
+        val adapter = NewsListAdapter()
+        recyclerView.adapter = adapter
+
+        viewModel.getNewsHeadlines().observe(viewLifecycleOwner, Observer {
+                adapter.submitList(it)
         })
     }
 }
