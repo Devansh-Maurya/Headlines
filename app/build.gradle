@@ -86,4 +86,7 @@ dependencies {
 
     // Intuit SDP (for consistency across different screen densities)
     implementation 'com.intuit.sdp:sdp-android:1.0.6'
+
+    // Coil image loading
+    implementation "io.coil-kt:coil:0.11.0"
 }
