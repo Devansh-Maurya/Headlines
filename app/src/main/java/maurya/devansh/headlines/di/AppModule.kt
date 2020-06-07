@@ -1,11 +1,10 @@
 package maurya.devansh.headlines.di
 
+import android.content.Context
 import androidx.lifecycle.ViewModelProvider
-import androidx.paging.DataSource
 import dagger.Binds
 import dagger.Module
-import maurya.devansh.headlines.datasource.NewsDataSourceFactory
-import maurya.devansh.headlines.model.NewsHeadline
+import maurya.devansh.headlines.HeadlinesApplication
 import maurya.devansh.headlines.screens.newslist.viewmodel.NewsListViewModelFactory
 
 /**
@@ -19,7 +18,11 @@ abstract class AppModule {
     internal abstract fun bindNewsFeedViewModelFactory(factory: NewsListViewModelFactory)
             : ViewModelProvider.Factory
 
+//    @Binds
+//    internal abstract fun bindNewsDataSourceFactory(factory: NewsDataSourceFactory):
+//            DataSource.Factory<Int, NewsHeadline>
+
     @Binds
-    internal abstract fun bindNewsDataSourceFactory(factory: NewsDataSourceFactory):
-            DataSource.Factory<Int, NewsHeadline>
+    abstract fun bindApplication(headlinesApplication: HeadlinesApplication):
+            Context
 }

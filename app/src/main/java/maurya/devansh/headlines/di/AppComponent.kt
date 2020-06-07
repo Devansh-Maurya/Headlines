@@ -9,7 +9,8 @@ import javax.inject.Singleton
  */
 
 @Singleton
-@Component(modules = [AppModule::class, RepositoryModule::class, NetworkModule::class])
+@Component(modules = [AppModule::class, RepositoryModule::class,
+    NetworkModule::class, DbModule::class, ContextModule::class])
 interface AppComponent {
 
     fun inject(newsListFragment: NewsListFragment)

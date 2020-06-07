@@ -1,28 +1,39 @@
 package maurya.devansh.headlines.model
 
 import androidx.recyclerview.widget.DiffUtil
+import androidx.room.Entity
+import androidx.room.Ignore
+import androidx.room.PrimaryKey
 
 /**
  * Created by Devansh on 6/6/20
  */
 
+// All members are vars because Room complaints about no setter for vals
+@Entity
 data class NewsHeadline(
-    val source: Source = Source(),
-    val author: String = "",
-    val title: String = "",
-    val description: String = "",
-    val url: String = "",
-    val urlToImage: String = "",
-    val publishedAt: String = "",
-    val content: String = ""
+    @PrimaryKey var url: String = "",
+    @Ignore var source: Source = Source(),
+    var author: String? = "",
+    var title: String? = "",
+    var description: String? = "",
+    var urlToImage: String? = "",
+    var publishedAt: String? = "",
+    var content: String? = "",
+    var sourceName: String? = ""
 ) {
+
+    init {
+        sourceName = source.name
+    }
+
     data class Source(
-        val id: String = "",
-        val name: String = ""
+        var id: String = "",
+        var name: String = ""
     )
 
     companion object {
-        val DIFF_CALLBACK = object : DiffUtil.ItemCallback<NewsHeadline>() {
+        var DIFF_CALLBACK = object : DiffUtil.ItemCallback<NewsHeadline>() {
             override fun areItemsTheSame(oldItem: NewsHeadline, newItem: NewsHeadline): Boolean =
                 oldItem.url == newItem.url
 

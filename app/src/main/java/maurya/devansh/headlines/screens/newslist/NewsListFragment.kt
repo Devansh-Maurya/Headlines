@@ -19,12 +19,13 @@ class NewsListFragment : Fragment() {
 
     @Inject
     lateinit var newsViewModelFactory: ViewModelProvider.Factory
-    private lateinit var viewModel: NewsListViewModel
+    private val viewModel: NewsListViewModel by lazy {
+        ViewModelProvider(this, newsViewModelFactory).get(NewsListViewModel::class.java)
+    }
 
     override fun onAttach(context: Context) {
         (context.applicationContext as HeadlinesApplication).appComponent.inject(this)
         super.onAttach(context)
-        viewModel = ViewModelProvider(this, newsViewModelFactory).get(NewsListViewModel::class.java)
     }
 
     override fun onCreateView(

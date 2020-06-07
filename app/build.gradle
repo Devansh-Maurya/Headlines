@@ -45,7 +45,8 @@ dependencies {
     def dagger_version = '2.22'
     def lifecycle_version = '2.2.0'
     def nav_version = '2.3.0-beta01'
-    def paging_version = "2.1.2"
+    def paging_version = '2.1.2'
+    def room_version = '2.2.5'
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
@@ -102,4 +103,7 @@ dependencies {
     // Timber
     implementation 'com.jakewharton.timber:timber:4.7.1'
 
+    // Room
+    implementation "androidx.room:room-runtime:$room_version"
+    kapt "androidx.room:room-compiler:$room_version"
 }
