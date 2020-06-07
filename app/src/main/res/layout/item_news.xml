@@ -5,37 +5,75 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginStart="@dimen/_14sdp"
-    android:layout_marginEnd="@dimen/_14sdp"
     android:layout_marginTop="@dimen/_16sdp"
+    android:layout_marginEnd="@dimen/_14sdp"
+    app:cardCornerRadius="@dimen/_6sdp"
     app:cardElevation="@dimen/_6sdp"
-    app:cardCornerRadius="@dimen/_6sdp">
+    tools:targetApi="o">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="?attr/selectableItemBackground">
+        android:background="?attr/selectableItemBackground"
+        android:paddingBottom="@dimen/_10sdp">
 
         <ImageView
             android:id="@+id/imageViewNews"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            tools:src="@tools:sample/backgrounds/scenic"
             android:scaleType="centerCrop"
-            app:layout_constraintDimensionRatio="18:9"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintDimensionRatio="16:9"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@tools:sample/backgrounds/scenic" />
 
         <TextView
             android:id="@+id/textViewTitle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            tools:text="@tools:sample/lorem"
             android:layout_marginTop="@dimen/_8sdp"
-            app:layout_constraintStart_toStartOf="@id/guidelineStart"
+            android:maxLines="3"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:ellipsize="end"
+            android:justificationMode="inter_word"
             app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
+            app:layout_constraintStart_toStartOf="@id/guidelineStart"
             app:layout_constraintTop_toBottomOf="@id/imageViewNews"
-            android:textSize="26sp" />
+            tools:text="@tools:sample/lorem/random" />
+
+        <TextView
+            android:id="@+id/textViewDescription"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_4sdp"
+            android:maxLines="2"
+            android:textSize="15sp"
+            android:ellipsize="end"
+            android:justificationMode="inter_word"
+            app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
+            app:layout_constraintStart_toStartOf="@id/guidelineStart"
+            app:layout_constraintTop_toBottomOf="@id/textViewTitle"
+            tools:text="@tools:sample/lorem/random" />
+
+        <TextView
+            android:id="@+id/textViewAuthorSource"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_6sdp"
+            app:layout_constraintTop_toBottomOf="@id/textViewDescription"
+            app:layout_constraintStart_toStartOf="@id/guidelineStart"
+            tools:text="@tools:sample/lorem"/>
+
+        <TextView
+            android:id="@+id/textViewPublishedTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_1sdp"
+            app:layout_constraintTop_toBottomOf="@id/textViewAuthorSource"
+            app:layout_constraintStart_toStartOf="@id/guidelineStart"
+            tools:text="@tools:sample/lorem"/>
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guidelineStart"

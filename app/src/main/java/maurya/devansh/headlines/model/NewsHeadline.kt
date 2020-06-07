@@ -1,8 +1,8 @@
 package maurya.devansh.headlines.model
 
 import androidx.recyclerview.widget.DiffUtil
+import androidx.room.Embedded
 import androidx.room.Entity
-import androidx.room.Ignore
 import androidx.room.PrimaryKey
 
 /**
@@ -13,7 +13,7 @@ import androidx.room.PrimaryKey
 @Entity
 data class NewsHeadline(
     @PrimaryKey var url: String = "",
-    @Ignore var source: Source = Source(),
+    @Embedded var source: Source = Source(),
     var author: String? = "",
     var title: String? = "",
     var description: String? = "",
@@ -28,8 +28,8 @@ data class NewsHeadline(
     }
 
     data class Source(
-        var id: String = "",
-        var name: String = ""
+        var id: String? = "",
+        var name: String? = ""
     )
 
     companion object {

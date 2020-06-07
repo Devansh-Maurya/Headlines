@@ -1,6 +1,8 @@
 package maurya.devansh.headlines
 
 import android.app.Application
+import coil.Coil
+import coil.ImageLoader
 import maurya.devansh.headlines.di.AppComponent
 import maurya.devansh.headlines.di.ContextModule
 import maurya.devansh.headlines.di.DaggerAppComponent
@@ -20,5 +22,12 @@ class HeadlinesApplication: Application() {
         if (BuildConfig.DEBUG) {
             Timber.plant(Timber.DebugTree())
         }
+
+        Coil.setImageLoader(
+            ImageLoader.Builder(this)
+                .crossfade(true)
+                .crossfade(300)
+                .error(R.drawable.ic_news)
+                .build())
     }
 }
