@@ -89,4 +89,7 @@ dependencies {
 
     // Coil image loading
     implementation "io.coil-kt:coil:0.11.0"
+
+    // Chrome custom tabs
+    implementation 'androidx.browser:browser:1.2.0'
 }
