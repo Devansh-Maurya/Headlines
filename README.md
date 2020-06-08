@@ -3,7 +3,10 @@
   <h1 align="center">Headlines</h1>
 </p>
 
-An Android app to show latest news headlines from the News API. The app also supports local data caching to show headlines when offline.
+#### An Android app to show latest news headlines from the News API. The app also supports local data caching to show headlines when offline.
+
+#### Download APK : [Google Drive Link](https://drive.google.com/file/d/16da44Yhzkkf5d0K0LTLBE1LpiGVn3QTF/view?usp=sharing)
+
 
 ### Screenshots
 
