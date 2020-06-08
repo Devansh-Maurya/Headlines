@@ -10,6 +10,7 @@ import maurya.devansh.headlines.R
 import maurya.devansh.headlines.model.NewsHeadline
 import maurya.devansh.headlines.screens.BaseViewHolder
 import maurya.devansh.headlines.util.combineAuthorAndSource
+import maurya.devansh.headlines.util.getBoldText
 import maurya.devansh.headlines.util.getFormattedTime
 
 /**
@@ -22,7 +23,8 @@ class NewsViewHolder(itemView: View): BaseViewHolder<NewsHeadline>(itemView) {
         itemView.apply {
             textViewTitle.text = item.title
             textViewDescription.text = item.description
-            textViewAuthorSource.text = combineAuthorAndSource(item.author ?: "", item.source.name ?: "")
+            textViewAuthorSource.text =
+                getBoldText(combineAuthorAndSource(item.author ?: "", item.source.name ?: ""))
             textViewPublishedTime.text = getFormattedTime(item.publishedAt ?: "")
             imageViewNews.load(item.urlToImage)
 

@@ -1,6 +1,8 @@
 package maurya.devansh.headlines.util
 
 import android.text.format.DateUtils
+import androidx.core.text.bold
+import androidx.core.text.buildSpannedString
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -20,4 +22,11 @@ internal fun getFormattedTime(publishedTime: String): CharSequence {
     return DateUtils.getRelativeTimeSpanString(
         date?.time ?: currentTime, currentTime, DateUtils.MINUTE_IN_MILLIS)
 }
+
+internal fun getBoldText(input: String): CharSequence =
+    buildSpannedString {
+        bold {
+            append(input)
+        }
+    }
 
