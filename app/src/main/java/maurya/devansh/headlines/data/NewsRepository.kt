@@ -1,7 +1,6 @@
 package maurya.devansh.headlines.data
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.paging.LivePagedListBuilder
 import androidx.paging.PagedList
 import io.reactivex.Completable
@@ -22,8 +21,6 @@ class NewsRepository @Inject constructor(private val newsHeadlinesDb: NewsHeadli
                                          private val newsHeadlinesApi: NewsHeadlinesApiService,
                                          private val newsBoundaryCallback: NewsBoundaryCallback
 ) {
-
-    private var newsHeadlinesLiveData: LiveData<PagedList<NewsHeadline>> = MutableLiveData()
 
     fun refreshData(action : () -> Unit) {
         val disposable = newsHeadlinesApi.getTopHeadlines("in", BuildConfig.API_KEY, 1)

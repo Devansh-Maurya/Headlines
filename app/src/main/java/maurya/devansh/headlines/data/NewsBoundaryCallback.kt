@@ -53,10 +53,6 @@ class NewsBoundaryCallback @Inject constructor(private val newsHeadlinesDb: News
         }
     }
 
-    override fun onItemAtFrontLoaded(itemAtFront: NewsHeadline) {
-        super.onItemAtFrontLoaded(itemAtFront)
-    }
-
     override fun onItemAtEndLoaded(itemAtEnd: NewsHeadline) {
         super.onItemAtEndLoaded(itemAtEnd)
         helper.runIfNotRunning(PagingRequestHelper.RequestType.AFTER) { helperCallback ->
