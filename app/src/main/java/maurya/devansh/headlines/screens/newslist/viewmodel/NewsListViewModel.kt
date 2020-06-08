@@ -3,21 +3,24 @@ package maurya.devansh.headlines.screens.newslist.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.paging.PagedList
-import maurya.devansh.headlines.model.NewsHeadline
 import maurya.devansh.headlines.data.NewsRepository
+import maurya.devansh.headlines.model.NewsHeadline
 import timber.log.Timber
 
 /**
  * Created by Devansh on 6/6/20
  */
 
-class NewsListViewModel(newsRepository: NewsRepository): ViewModel() {
+class NewsListViewModel(private val newsRepository: NewsRepository): ViewModel() {
 
-    private val newsHeadlinesListLiveData = newsRepository.getTopHeadlines()
     private val compositeDisposable = newsRepository.getCompositeDisposable()
 
+    init {
+        newsRepository.refreshData {}
+    }
+
     fun getNewsHeadlines() : LiveData<PagedList<NewsHeadline>> {
-        return newsHeadlinesListLiveData
+        return newsRepository.getNewsHeadlines()
     }
 
     override fun onCleared() {

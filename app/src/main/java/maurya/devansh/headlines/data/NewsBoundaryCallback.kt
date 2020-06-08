@@ -31,7 +31,7 @@ class NewsBoundaryCallback @Inject constructor(private val newsHeadlinesDb: News
 
     override fun onZeroItemsLoaded() {
         super.onZeroItemsLoaded()
-        helper.runIfNotRunning(PagingRequestHelper.RequestType.AFTER) { helperCallback ->
+        helper.runIfNotRunning(PagingRequestHelper.RequestType.INITIAL) { helperCallback ->
             val disposable = newsHeadlinesApi.getTopHeadlines("in", BuildConfig.API_KEY, pageCount)
                 .subscribeOn(Schedulers.io())
                 .subscribe ({ topHeadlines ->
@@ -51,6 +51,10 @@ class NewsBoundaryCallback @Inject constructor(private val newsHeadlinesDb: News
                 })
             compositeDisposable.add(disposable)
         }
+    }
+
+    override fun onItemAtFrontLoaded(itemAtFront: NewsHeadline) {
+        super.onItemAtFrontLoaded(itemAtFront)
     }
 
     override fun onItemAtEndLoaded(itemAtEnd: NewsHeadline) {
