@@ -7,8 +7,8 @@ import io.reactivex.schedulers.Schedulers
 import maurya.devansh.headlines.BuildConfig
 import maurya.devansh.headlines.consts.PAGE_SIZE
 import maurya.devansh.headlines.data.local.NewsHeadlinesDb
-import maurya.devansh.headlines.model.NewsHeadline
 import maurya.devansh.headlines.data.remote.NewsHeadlinesApiService
+import maurya.devansh.headlines.model.NewsHeadline
 import maurya.devansh.headlines.util.PagingRequestHelper
 import timber.log.Timber
 import java.util.concurrent.Executors
@@ -31,24 +31,42 @@ class NewsBoundaryCallback @Inject constructor(private val newsHeadlinesDb: News
 
     override fun onZeroItemsLoaded() {
         super.onZeroItemsLoaded()
-        getAndCacheData()
+        helper.runIfNotRunning(PagingRequestHelper.RequestType.AFTER) { helperCallback ->
+            val disposable = newsHeadlinesApi.getTopHeadlines("in", BuildConfig.API_KEY, pageCount)
+                .subscribeOn(Schedulers.io())
+                .subscribe ({ topHeadlines ->
+                    Completable.fromAction {
+                        newsHeadlinesDb.newsHeadlinesDao.deleteAll() }
+                        .andThen {
+                            Completable.fromAction {
+                                newsHeadlinesDb.newsHeadlinesDao.insert(topHeadlines.articles.toTypedArray())
+                            }.subscribeOn(Schedulers.io()).subscribe({
+                                Timber.d("Data added to DB: ${topHeadlines.articles}")
+                                updatePageCount(topHeadlines.articles.size)
+                                helperCallback.recordSuccess()
+                            }, {
+                                Timber.e("Error adding data to DB: $it")
+                                helperCallback.recordFailure(it) })
+                        }.subscribeOn(Schedulers.io())
+                        .subscribe()
+                }, { throwable ->
+                    Timber.e("Failed to load data: $throwable")
+                    helperCallback.recordFailure(throwable)
+                })
+            compositeDisposable.add(disposable)
+        }
     }
 
     override fun onItemAtEndLoaded(itemAtEnd: NewsHeadline) {
         super.onItemAtEndLoaded(itemAtEnd)
-        getAndCacheData()
-    }
-
-    private fun getAndCacheData() {
         helper.runIfNotRunning(PagingRequestHelper.RequestType.AFTER) { helperCallback ->
             val disposable = newsHeadlinesApi.getTopHeadlines("in", BuildConfig.API_KEY, pageCount)
                 .subscribeOn(Schedulers.io())
                 .subscribe ({ topHeadlines ->
                     Completable.fromAction {
                         newsHeadlinesDb.newsHeadlinesDao.insert(topHeadlines.articles.toTypedArray()) }
-                        .subscribeOn(Schedulers.io())
-                        .subscribe({
-                            Timber.d("Data added to DB")
+                        .subscribeOn(Schedulers.io()).subscribe({
+                            Timber.d("Data added to DB at end: ${topHeadlines.articles}")
                             updatePageCount(topHeadlines.articles.size)
                             helperCallback.recordSuccess()
                         }, {

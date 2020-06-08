@@ -114,4 +114,7 @@ dependencies {
     // Room
     implementation "androidx.room:room-runtime:$room_version"
     kapt "androidx.room:room-compiler:$room_version"
+
+    // Android Debug Database
+    debugImplementation 'com.amitshekhar.android:debug-db:1.0.6'
 }
