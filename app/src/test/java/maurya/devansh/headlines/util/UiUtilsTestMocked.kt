@@ -19,7 +19,8 @@ class UiUtilsTestMocked {
 
     @Test
     fun getFormattedTime_currentTimeMinusFourHours_fourHoursAgo() {
-        val inputFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.getDefault())
+        val inputFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'")
+        inputFormat.timeZone = TimeZone.getTimeZone("UTC")
 
         val fourHoursAgoTime = Calendar.getInstance().run {
             add(Calendar.HOUR, -4)
@@ -32,7 +33,8 @@ class UiUtilsTestMocked {
 
     @Test
     fun getFormattedTime_currentTimeMinusOneDay_yesterday() {
-        val inputFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.getDefault())
+        val inputFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'")
+        inputFormat.timeZone = TimeZone.getTimeZone("UTC")
 
         val fourHoursAgoTime = Calendar.getInstance().run {
             add(Calendar.DAY_OF_YEAR, -1)
@@ -45,7 +47,8 @@ class UiUtilsTestMocked {
 
     @Test
     fun getFormattedTime_currentTimeMinusTwoDays_twoDaysAgo() {
-        val inputFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.getDefault())
+        val inputFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'")
+        inputFormat.timeZone = TimeZone.getTimeZone("UTC")
 
         val fourHoursAgoTime = Calendar.getInstance().run {
             add(Calendar.DAY_OF_YEAR, -2)

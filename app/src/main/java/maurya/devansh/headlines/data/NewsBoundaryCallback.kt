@@ -36,19 +36,15 @@ class NewsBoundaryCallback @Inject constructor(private val newsHeadlinesDb: News
                 .subscribeOn(Schedulers.io())
                 .subscribe ({ topHeadlines ->
                     Completable.fromAction {
-                        newsHeadlinesDb.newsHeadlinesDao.deleteAll() }
-                        .andThen {
-                            Completable.fromAction {
-                                newsHeadlinesDb.newsHeadlinesDao.insert(topHeadlines.articles.toTypedArray())
-                            }.subscribeOn(Schedulers.io()).subscribe({
-                                Timber.d("Data added to DB: ${topHeadlines.articles}")
-                                updatePageCount(topHeadlines.articles.size)
-                                helperCallback.recordSuccess()
-                            }, {
-                                Timber.e("Error adding data to DB: $it")
-                                helperCallback.recordFailure(it) })
-                        }.subscribeOn(Schedulers.io())
-                        .subscribe()
+                        newsHeadlinesDb.newsHeadlinesDao.insert(topHeadlines.articles.toTypedArray())
+                    }.subscribeOn(Schedulers.io())
+                        .subscribe({
+                            Timber.d("Data added to DB: ${topHeadlines.articles}")
+                            updatePageCount(topHeadlines.articles.size)
+                            helperCallback.recordSuccess()
+                    }, {
+                        Timber.e("Error adding data to DB: $it")
+                        helperCallback.recordFailure(it) })
                 }, { throwable ->
                     Timber.e("Failed to load data: $throwable")
                     helperCallback.recordFailure(throwable)

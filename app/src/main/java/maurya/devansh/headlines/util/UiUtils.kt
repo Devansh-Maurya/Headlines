@@ -16,7 +16,8 @@ internal fun combineAuthorAndSource(author: String, sourceName: String) : String
 }
 
 internal fun getFormattedTime(publishedTime: String): CharSequence {
-    val inputFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.getDefault())
+    val inputFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'")
+    inputFormat.timeZone = TimeZone.getTimeZone("UTC")
     val date = inputFormat.parse(publishedTime)
     val currentTime = Calendar.getInstance().timeInMillis
     return DateUtils.getRelativeTimeSpanString(
