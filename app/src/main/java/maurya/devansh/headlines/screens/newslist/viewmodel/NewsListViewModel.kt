@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.paging.PagedList
 import maurya.devansh.headlines.model.NewsHeadline
-import maurya.devansh.headlines.repository.news.NewsRepository
+import maurya.devansh.headlines.data.NewsRepository
 import timber.log.Timber
 
 /**

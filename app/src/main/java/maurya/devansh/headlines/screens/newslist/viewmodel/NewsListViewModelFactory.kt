@@ -2,7 +2,7 @@ package maurya.devansh.headlines.screens.newslist.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import maurya.devansh.headlines.repository.news.NewsRepository
+import maurya.devansh.headlines.data.NewsRepository
 import javax.inject.Inject
 
 /**

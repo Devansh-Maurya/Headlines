@@ -1,4 +1,4 @@
-package maurya.devansh.headlines.repository.news
+package maurya.devansh.headlines.data
 
 import androidx.paging.PagedList
 import io.reactivex.Completable
@@ -6,9 +6,9 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import maurya.devansh.headlines.BuildConfig
 import maurya.devansh.headlines.consts.PAGE_SIZE
-import maurya.devansh.headlines.db.NewsHeadlinesDb
+import maurya.devansh.headlines.data.local.NewsHeadlinesDb
 import maurya.devansh.headlines.model.NewsHeadline
-import maurya.devansh.headlines.network.NewsHeadlinesApiService
+import maurya.devansh.headlines.data.remote.NewsHeadlinesApiService
 import maurya.devansh.headlines.util.PagingRequestHelper
 import timber.log.Timber
 import java.util.concurrent.Executors

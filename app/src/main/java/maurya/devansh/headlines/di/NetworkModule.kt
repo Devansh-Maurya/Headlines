@@ -3,8 +3,8 @@ package maurya.devansh.headlines.di
 import dagger.Module
 import dagger.Provides
 import io.reactivex.disposables.CompositeDisposable
-import maurya.devansh.headlines.network.NewsHeadlinesApiService
-import maurya.devansh.headlines.network.RetrofitService
+import maurya.devansh.headlines.data.remote.NewsHeadlinesApiService
+import maurya.devansh.headlines.data.remote.RetrofitService
 import javax.inject.Singleton
 
 /**

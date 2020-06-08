@@ -1,4 +1,4 @@
-package maurya.devansh.headlines.network
+package maurya.devansh.headlines.data.remote
 
 import io.reactivex.Flowable
 import maurya.devansh.headlines.model.TopNewsHeadlines

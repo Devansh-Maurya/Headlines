@@ -1,4 +1,4 @@
-package maurya.devansh.headlines.network
+package maurya.devansh.headlines.data.remote
 
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory

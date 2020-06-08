@@ -1,4 +1,4 @@
-package maurya.devansh.headlines.db
+package maurya.devansh.headlines.data.local
 
 import androidx.paging.DataSource
 import androidx.room.Dao

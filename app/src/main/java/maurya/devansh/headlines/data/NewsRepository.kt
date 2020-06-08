@@ -1,10 +1,10 @@
-package maurya.devansh.headlines.repository.news
+package maurya.devansh.headlines.data
 
 import androidx.lifecycle.LiveData
 import androidx.paging.LivePagedListBuilder
 import androidx.paging.PagedList
 import io.reactivex.disposables.CompositeDisposable
-import maurya.devansh.headlines.db.NewsHeadlinesDb
+import maurya.devansh.headlines.data.local.NewsHeadlinesDb
 import maurya.devansh.headlines.model.NewsHeadline
 import javax.inject.Inject
 
