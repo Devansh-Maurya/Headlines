@@ -1,7 +1,6 @@
 package maurya.devansh.headlines.screens.newslist.recyclerview
 
 import android.net.Uri
-import android.text.format.DateUtils
 import android.view.View
 import androidx.browser.customtabs.CustomTabsIntent
 import androidx.core.content.ContextCompat
@@ -10,8 +9,8 @@ import kotlinx.android.synthetic.main.item_news.view.*
 import maurya.devansh.headlines.R
 import maurya.devansh.headlines.model.NewsHeadline
 import maurya.devansh.headlines.screens.BaseViewHolder
-import java.text.SimpleDateFormat
-import java.util.*
+import maurya.devansh.headlines.util.combineAuthorAndSource
+import maurya.devansh.headlines.util.getFormattedTime
 
 /**
  * Created by Devansh on 7/6/20
@@ -31,19 +30,6 @@ class NewsViewHolder(itemView: View): BaseViewHolder<NewsHeadline>(itemView) {
                 openNewsArticle(item.url)
             }
         }
-    }
-
-    private fun combineAuthorAndSource(author: String, sourceName: String) : String {
-        val comma = if (author.isNotBlank() and sourceName.isNotBlank()) ", " else ""
-        return StringBuilder().append(author).append(comma).append(sourceName).toString()
-    }
-
-    private fun getFormattedTime(publishedTime: String): CharSequence {
-        val inputFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.getDefault())
-        val date = inputFormat.parse(publishedTime)
-        val currentTime = Calendar.getInstance().timeInMillis
-        return DateUtils.getRelativeTimeSpanString(
-            date?.time ?: currentTime, currentTime, DateUtils.MINUTE_IN_MILLIS)
     }
 
     private fun openNewsArticle(newsUrl: String) {
